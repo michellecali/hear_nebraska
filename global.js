@@ -1,10 +1,8 @@
 window.addEventListener("load", function(){
-  var addAlbumButton = document.getElementById("addAlbumButton");
 
   addAlbumButton.addEventListener("click",function(){
     var homePage = document.getElementById("homePage");
     var titleArtistForm = document.getElementById("titleArtistForm");
-    var submitAlbumButton = document.getElementById("submitAlbumButton");
     homePage.style.display="none";
     titleArtistForm.style.display="block";
   
@@ -31,6 +29,11 @@ window.addEventListener("load", function(){
         artistInstrument.innerHTML = instrument.value;
         memberInstrumentForm.style.display = "none";
         homePage.style.display="block";
+      });
+
+      goToTitleArtistForm.addEventListener("click", function(){
+        memberInstrumentForm.style.display = "none";
+        titleArtistForm.style.display="block";
       });
   });
 });
