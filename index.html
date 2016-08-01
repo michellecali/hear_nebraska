@@ -15,6 +15,8 @@
 			<div class="LatestUploads__AlbumImage" id="albumImage"></div>
 			<div class="LatestUploads__AlbumTitle" id="albumTitle"></div>
 			<div class="LatestUploads__AlbumArtist" id="albumArtist"></div>
+			<div class="LatestUploads__Member" id="artistMember"></div>
+			<div class="LatestUploads__Instrument" id="artistInstrument"></div>
 		</div>
 	</div>
 </div>
@@ -27,6 +29,15 @@
 	<input id="artist" type="text" class="titleArtistForm__artist" name="Artist">
 	<p>Separate multiple artists with a comma.</p>
 	<button class="titleArtistForm__submit" id="submitAlbumButton" name="submit">N</button>
+</div> 
+
+<div class="memberInstrumentForm" id="memberInstrumentForm" style="display: none">
+	<h1>Add <span id="bandName"></span> members</h1>
+	<input type="text" class="memberInstrumentForm__member" id="member0" name="member" placeholder="Name">
+	<input type="text" class="memberInstrumentForm__instrument" id="instrument0" name="instrument" placeholder="Instrument(s)">
+	<p>Separate multiple instruments with a comma.</p>
+	<button class="memberInstrumentForm__previous" id="goToTitleArtistForm" name="submit">P</button>
+	<button class="memberInstrumentForm__submit" id="submitBandButton" name="submit">N</button>
 </div> 
 
 
