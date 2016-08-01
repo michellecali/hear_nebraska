@@ -20,20 +20,36 @@ window.addEventListener("load", function(){
         memberInstrumentForm.style.display="block";
       });
 
-      submitBandButton.addEventListener("click", function(){
-        var member = document.getElementById("member0");
-        var instrument = document.getElementById("instrument0");
-        var artistMember = document.getElementById("artistMember");
-        var artistInstrument = document.getElementById("artistInstrument");
-        artistMember.innerHTML = member.value;
-        artistInstrument.innerHTML = instrument.value;
-        memberInstrumentForm.style.display = "none";
-        homePage.style.display="block";
+        anotherMember.addEventListener("click", function(){
+          lastMember.style.display="block";
+        });
+
+        submitBandButton.addEventListener("click", function(){
+          var member = document.getElementsByClassName("memberInstrumentForm__member");
+          var instrument = document.getElementsByClassName("memberInstrumentForm__instrument");
+          var artistMembers = document.getElementsByClassName("Members");
+          var artistInstruments = document.getElementsByClassName("Instruments");
+          debugger;
+
+          for (var i = 0; i < member.length; i++) {
+          artistMembers[i].innerHTML = member[i].value;
+          }
+          // will need to create new artistMembers and artistInstruments when click
+          for (var i = 0; i < instrument.length; i++) {
+          artistInstruments[i].innerHTML = instrument[i].value;
+          }
+          
+          debugger;
+          memberInstrumentForm.style.display = "none";
+          lastMember.style.display="none";
+          homePage.style.display="block";
+        });
+
       });
 
       goToTitleArtistForm.addEventListener("click", function(){
         memberInstrumentForm.style.display = "none";
         titleArtistForm.style.display="block";
       });
-  });
+
 });
