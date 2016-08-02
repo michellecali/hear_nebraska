@@ -27,7 +27,8 @@ window.addEventListener("load", function(){
       var enteredData = JSON.parse(e.target.response);
         debugger;
         // debugger only showing one of two records
-        
+      var artistData = enteredData.object;
+      debugger;
       });
       
     compare.open("get", "info");
