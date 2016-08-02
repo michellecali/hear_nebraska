@@ -24,17 +24,27 @@ window.addEventListener("load", function(){
   anotherMember.addEventListener("click", newMemberInstrument);
   
    function newMemberInstrument(element) {  
-      lastMember.style.display="block";
+      
+      var member = document.getElementsByClassName("memberInstrumentForm__member");
+      var instrument = document.getElementsByClassName("memberInstrumentForm__instrument");
+      var n = member.length;
+      member[n-1].style.display = "none";
+      instrument[n-1].style.display = "none";
 
+      
       var newMember = document.createElement("INPUT");
       newMember.setAttribute("type", "text");
       newMember.setAttribute("class", "memberInstrumentForm__member");
       newMember.setAttribute("placeholder", "Name");
+      newMember.setAttribute("id", "member" + n);
+      newMember.setAttribute("style", "display:block");
 
       var newInstrument = document.createElement("INPUT");
       newInstrument.setAttribute("type", "text");
       newInstrument.setAttribute("class", "memberInstrumentForm__instrument");
       newInstrument.setAttribute("placeholder", "Instrument(s)");
+      newInstrument.setAttribute("id", "instrument" + n);
+      newInstrument.setAttribute("style", "display:block");
 
       memberInstrumentForm.appendChild(newMember);
       memberInstrumentForm.appendChild(newInstrument);
@@ -47,6 +57,8 @@ window.addEventListener("load", function(){
 
       memberInstrumentPage.appendChild(newMembersDiv);
       memberInstrumentPage.appendChild(newInstrumentsDiv);
+
+      lastMember.style.display="block";
       
     };
         
@@ -56,7 +68,6 @@ window.addEventListener("load", function(){
       var instrument = document.getElementsByClassName("memberInstrumentForm__instrument");
       var membersDiv = document.getElementsByClassName("Members");
       var instrumentsDiv = document.getElementsByClassName("Instruments");
-      debugger;
 
       for (var i = 0; i < member.length; i++) {
       membersDiv[i].innerHTML = member[i].value;
@@ -66,10 +77,10 @@ window.addEventListener("load", function(){
       instrumentsDiv[i].innerHTML = instrument[i].value;
       }
       
-      debugger;
       memberInstrumentForm.style.display = "none";
       lastMember.style.display="none";
       homePage.style.display="block";
+
     });
 
      
