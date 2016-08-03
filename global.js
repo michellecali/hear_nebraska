@@ -15,7 +15,6 @@ function toggleViews(div) {
 function moveForward(value, array) {
     oldVal = value++;
     newVal = oldVal + 1;
-    document.getElementById("toggleIndex").value = newVal;
     toggleViews(array[oldVal]);
     toggleViews(array[newVal]);  
 }
@@ -28,7 +27,6 @@ function moveBackward(value, array) {
     toggleViews(array[newVal]);  
 }
 
-
 window.addEventListener("load", function(){
 var toggledViews = document.getElementsByClassName("toggledView");
 var hidePage = hideAll(toggledViews);
@@ -40,9 +38,13 @@ var addAlbumButton = document.getElementById("addAlbumButton");
     moveForward(toggleIndex, toggledViews);
   });
 
-
 var submitAlbumButton = document.getElementById("submitAlbumButton");
   submitAlbumButton.addEventListener("click", function(){
+    moveForward(newVal, toggledViews);
+  });
+
+var submitBandButton = document.getElementById("submitBandButton");
+  submitBandButton.addEventListener("click", function(){
     moveForward(newVal, toggledViews);
   });
 
