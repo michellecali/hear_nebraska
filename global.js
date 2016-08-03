@@ -63,6 +63,16 @@ window.addEventListener("load", function(){
     moveBackward(newVal, toggledViews);
   });
 
+  var submitAlbumImagesButton = document.getElementById("submitAlbumImagesButton");
+  submitAlbumImagesButton.addEventListener("click", function(){
+    moveForward(newVal, toggledViews);
+  });
+
+  var goToLocationImageForm = document.getElementById("goToLocationImageForm");
+  goToLocationImageForm.addEventListener("click", function(){
+    moveBackward(newVal, toggledViews);
+  });
+
   
 
 }); 
