@@ -8,57 +8,66 @@ window.addEventListener("load", function(){
   });
   
   submitAlbumButton.addEventListener("click", function(){
+    // capture entered values
     var title = document.getElementById("title");
     var artist = document.getElementById("artist");
-    var albumTitle = document.getElementById("albumTitle");
-    var albumArtist = document.getElementById("albumArtist");
-    var memberInstrumentForm = document.getElementById("memberInstrumentForm");
-    var bandName = document.getElementById("bandName");
-    albumTitle.innerHTML = title.value;
-    albumArtist.innerHTML = artist.value;
-    bandName.innerHTML = artist.value;
-    titleArtistForm.style.display = "none";
-    memberInstrumentForm.style.display="block";
-      
+    // denote storage location
+    var userData = document.getElementsByClassName("userData");
+    // create divs with entered values
+    var userData__albumTitle = document.createElement("div");
+    userData__albumTitle.setAttribute("class", "userData__albumTitle");
+    userData__albumTitle.value = title.value;
+    var userData__albumArtist = document.createElement("div");
+    userData__albumArtist.setAttribute("class", "userData__albumArtist");
+    userData__albumArtist.value = artist.value;
+   
+    // check if unique artist
     var artistCompare = new XMLHttpRequest();
 
-    artistCompare.addEventListener("load", function(e){
-        
+    artistCompare.addEventListener("load", function(e){  
+
       var artistCompareResult = JSON.parse(e.target.response);
       var artistId = artistCompareResult.artistId;
       debugger;
+      // if not a unique artist, capture artistID and check if unique album
       if (artistId != ""){
-        var artistIdField = document.createElement("INPUT");
-        artistIdField.setAttribute("type", "text");
-        artistIdField.setAttribute("class", "titleArtistForm__artistId");
-        artistIdField.value = artistId;
+        // capture artistID
+        var userData__artistId = document.createElement("div");
+        userData__artistId.setAttribute("class", "userData__artistId");
+        userData__artistId.value = artistId.value;
         debugger;
-        
-        var albumCompare = new XMLHttpRequest();
+        //check if unique album
+        var albumTitleCompare = new XMLHttpRequest();
 
-        albumCompare.addEventListener("load", function(e){
+        albumTitleCompare.addEventListener("load", function(e){
 
-          var albumCompareResult = JSON.parse(e.target.response);
-          var albumId = albumCompareResult.albumId;
+          var albumTitleCompareResult = JSON.parse(e.target.response);
+          var albumTitleId = albumTitleCompareResult.albumId;
           debugger;
-          if (albumId != ""){
-            var albumIdField = document.createElement("INPUT");
-            albumIdField.setAttribute("type", "text");
-            albumIdField.setAttribute("class", "titleArtistForm__albumId");
-            albumIdField.value = albumId;
+
+          // if not unique album, capture albumId
+          if (albumTitleId != ""){
+            var userData__albumTitleId = document.createElement("div");
+            userData__albumTitleId.setAttribute("class", "userData__albumTitleId");
+            userData__albumTitleId.value = albumTitleId.value;  
             debugger;
           }
         });
+
+        albumTitleCompare.open("get", "albumInfo");
+        albumTitleCompare.send();
       }
-
-        albumCompare.open("get", "albumInfo");
-        albumCompare.send();
-      
     });
-      
     artistCompare.open("get", "artistInfo");
-    artistCompare.send();
-
+    artistCompare.send(); 
+    debugger;
+         
+    // hide this form and show the next
+    titleArtistForm.style.display = "none";
+    var memberInstrumentForm = document.getElementById("memberInstrumentForm");
+    var bandName = document.getElementById("bandName");  
+    bandName.innerHTML = artist;
+    memberInstrumentForm.style.display="block";
   });
    
 
@@ -71,7 +80,6 @@ window.addEventListener("load", function(){
       var n = member.length;
       member[n-1].style.display = "none";
       instrument[n-1].style.display = "none";
-
       
       var newMember = document.createElement("INPUT");
       newMember.setAttribute("type", "text");
@@ -87,8 +95,8 @@ window.addEventListener("load", function(){
       newInstrument.setAttribute("id", "instrument" + n);
       newInstrument.setAttribute("style", "display:block");
 
-      memberInstrumentForm.appendChild(newMember);
-      memberInstrumentForm.appendChild(newInstrument);
+      memberInstrumentForm__fields.appendChild(newMember);
+      memberInstrumentForm__fields.appendChild(newInstrument);
 
       var newMembersDiv = document.createElement("div");
       newMembersDiv.setAttribute("class", "Members");
@@ -100,6 +108,7 @@ window.addEventListener("load", function(){
       memberInstrumentPage.appendChild(newInstrumentsDiv);
 
       lastMember.style.display="block";
+      // lastMember is the button that appears when additional band members are added to view the previously added member
       
     };
         
@@ -127,6 +136,7 @@ window.addEventListener("load", function(){
      
 
     goToTitleArtistForm.addEventListener("click", function(){
+      // this is the p button that takes you back to the previous form when entering band membersS
         memberInstrumentForm.style.display = "none";
         titleArtistForm.style.display="block";
     });
