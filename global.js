@@ -27,11 +27,15 @@ function moveBackward(value, array) {
     toggleViews(array[newVal]);  
 }
 
+
+
 window.addEventListener("load", function(){
   var toggledViews = document.getElementsByClassName("toggledView");
   var hidePage = hideAll(toggledViews);
   var toggleIndex = document.getElementById("toggleIndex").value;
   var currentView = toggleViews(toggledViews[toggleIndex]);
+  var userData = document.getElementById("userData");
+  userData.style.display = "none";
 
   var addAlbumButton = document.getElementById("addAlbumButton");
   addAlbumButton.addEventListener("click", function(){
@@ -41,6 +45,12 @@ window.addEventListener("load", function(){
   var submitAlbumButton = document.getElementById("submitAlbumButton");
   submitAlbumButton.addEventListener("click", function(){
     moveForward(newVal, toggledViews);
+    var userData__albumArtist = document.createElement("P");
+    userData__albumArtist.setAttribute("class", "userData__albumArtist");
+    var t = document.createTextNode(albumArtist.value);
+    userData__albumArtist.appendChild(t);   
+    userData.appendChild(userData__albumArtist);
+    debugger;
   });
 
   var submitBandButton = document.getElementById("submitBandButton");
@@ -83,9 +93,11 @@ window.addEventListener("load", function(){
     moveBackward(newVal, toggledViews);
   });
 
-  var submitTracksButton = document.getElementById("submitTracksButton");
-  submitTracksButton.addEventListener("click", function(){
-    moveForward(newVal, toggledViews);
+  var submitAllButton = document.getElementById("submitAllButton");
+  submitAllButton.addEventListener("click", function(){
+    hideAll(toggledViews);
+    userData.style.display = "block"
+    debugger;
   });
 
   var goToGenreDateFormatForm = document.getElementById("goToGenreDateFormatForm");
