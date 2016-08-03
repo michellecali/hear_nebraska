@@ -28,28 +28,38 @@ function moveBackward(value, array) {
 }
 
 window.addEventListener("load", function(){
-var toggledViews = document.getElementsByClassName("toggledView");
-var hidePage = hideAll(toggledViews);
-var toggleIndex = document.getElementById("toggleIndex").value;
-var currentView = toggleViews(toggledViews[toggleIndex]);
+  var toggledViews = document.getElementsByClassName("toggledView");
+  var hidePage = hideAll(toggledViews);
+  var toggleIndex = document.getElementById("toggleIndex").value;
+  var currentView = toggleViews(toggledViews[toggleIndex]);
 
-var addAlbumButton = document.getElementById("addAlbumButton");
+  var addAlbumButton = document.getElementById("addAlbumButton");
   addAlbumButton.addEventListener("click", function(){
     moveForward(toggleIndex, toggledViews);
   });
 
-var submitAlbumButton = document.getElementById("submitAlbumButton");
+  var submitAlbumButton = document.getElementById("submitAlbumButton");
   submitAlbumButton.addEventListener("click", function(){
     moveForward(newVal, toggledViews);
   });
 
-var submitBandButton = document.getElementById("submitBandButton");
+  var submitBandButton = document.getElementById("submitBandButton");
   submitBandButton.addEventListener("click", function(){
     moveForward(newVal, toggledViews);
   });
 
-var goToTitleArtistForm = document.getElementById("goToTitleArtistForm");
+  var goToTitleArtistForm = document.getElementById("goToTitleArtistForm");
   goToTitleArtistForm.addEventListener("click", function(){
+    moveBackward(newVal, toggledViews);
+  });
+
+  var submitLocationImageButton = document.getElementById("submitLocationImageButton");
+  submitLocationImageButton.addEventListener("click", function(){
+    moveForward(newVal, toggledViews);
+  });
+
+  var goToMemberInstrumentForm = document.getElementById("goToMemberInstrumentForm");
+  goToMemberInstrumentForm.addEventListener("click", function(){
     moveBackward(newVal, toggledViews);
   });
 
