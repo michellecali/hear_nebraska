@@ -12,6 +12,14 @@ function toggleViews(div) {
   }
 }
 
+function moveForward(value, array) {
+    oldVal = value++;
+    newVal = oldVal + 1;
+    document.getElementById("toggleIndex").value = newVal;
+    toggleViews(array[oldVal]);
+    toggleViews(array[newVal]);  
+}
+
 
 window.addEventListener("load", function(){
 var toggledViews = document.getElementsByClassName("toggledView");
@@ -22,15 +30,9 @@ var addAlbumButton = document.getElementById("addAlbumButton");
 
 
   addAlbumButton.addEventListener("click", function(){
-    moveForward(toggleIndex);
+    moveForward(toggleIndex, toggledViews);
   });
 
-  function moveForward(value) {
-    oldVal = value++;
-    newVal = oldVal + 1;
-    document.getElementById("toggleIndex").value = newVal;
-    toggleViews(toggledViews[oldVal]);
-    toggleViews(toggledViews[newVal]);  
-  }
+  
 
 }); 
