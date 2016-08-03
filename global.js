@@ -12,11 +12,6 @@ function toggleViews(div) {
   }
 }
 
-function add1() {
-  oldVal = document.getElementById("toggleIndex").value++;
-  newVal = oldVal + 1;
-  document.getElementById("toggleIndex").value = newVal;
-}
 
 window.addEventListener("load", function(){
 debugger;
@@ -28,7 +23,11 @@ var currentView = toggleViews(toggledViews[toggleIndex]);
 var addAlbumButton = document.getElementById("addAlbumButton");
 
 
-addAlbumButton.addEventListener("click", add1());
+addAlbumButton.addEventListener("click", function(){
+  oldVal = document.getElementById("toggleIndex").value++;
+  newVal = oldVal + 1;
+  document.getElementById("toggleIndex").value = newVal;
+});
 debugger;
 
 }); 
