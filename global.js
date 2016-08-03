@@ -22,11 +22,15 @@ var addAlbumButton = document.getElementById("addAlbumButton");
 
 
   addAlbumButton.addEventListener("click", function(){
-    oldVal = toggleIndex++;
+    moveForward(toggleIndex);
+  });
+
+  function moveForward(value) {
+    oldVal = value++;
     newVal = oldVal + 1;
     document.getElementById("toggleIndex").value = newVal;
     toggleViews(toggledViews[oldVal]);
     toggleViews(toggledViews[newVal]);  
-  });
+  }
 
 }); 
