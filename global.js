@@ -20,17 +20,30 @@ function moveForward(value, array) {
     toggleViews(array[newVal]);  
 }
 
+function moveBackward(value, array) {
+    oldVal = value++;
+    newVal = oldVal - 1;
+    document.getElementById("toggleIndex").value = newVal;
+    toggleViews(array[oldVal]);
+    toggleViews(array[newVal]);  
+}
+
 
 window.addEventListener("load", function(){
 var toggledViews = document.getElementsByClassName("toggledView");
 var hidePage = hideAll(toggledViews);
 var toggleIndex = document.getElementById("toggleIndex").value;
 var currentView = toggleViews(toggledViews[toggleIndex]);
+
 var addAlbumButton = document.getElementById("addAlbumButton");
-
-
   addAlbumButton.addEventListener("click", function(){
     moveForward(toggleIndex, toggledViews);
+  });
+
+
+var submitAlbumButton = document.getElementById("submitAlbumButton");
+  submitAlbumButton.addEventListener("click", function(){
+    moveForward(newVal, toggledViews);
   });
 
   
