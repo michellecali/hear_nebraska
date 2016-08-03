@@ -73,6 +73,15 @@ window.addEventListener("load", function(){
     moveBackward(newVal, toggledViews);
   });
 
+  var submitGenreDateFormatButton = document.getElementById("submitGenreDateFormatButton");
+  submitGenreDateFormatButton.addEventListener("click", function(){
+    moveForward(newVal, toggledViews);
+  });
+
+  var goToAlbumImagesForm = document.getElementById("goToAlbumImagesForm");
+  goToAlbumImagesForm.addEventListener("click", function(){
+    moveBackward(newVal, toggledViews);
+  });
   
 
 }); 
