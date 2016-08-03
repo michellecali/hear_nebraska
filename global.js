@@ -48,6 +48,11 @@ var submitBandButton = document.getElementById("submitBandButton");
     moveForward(newVal, toggledViews);
   });
 
+var goToTitleArtistForm = document.getElementById("goToTitleArtistForm");
+  goToTitleArtistForm.addEventListener("click", function(){
+    moveBackward(newVal, toggledViews);
+  });
+
   
 
 }); 
