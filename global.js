@@ -14,19 +14,21 @@ function toggleViews(div) {
 
 
 window.addEventListener("load", function(){
-debugger;
 var toggledViews = document.getElementsByClassName("toggledView");
 var hidePage = hideAll(toggledViews);
 var toggleIndex = document.getElementById("toggleIndex").value;
-debugger;
 var currentView = toggleViews(toggledViews[toggleIndex]);
 var addAlbumButton = document.getElementById("addAlbumButton");
 
 
 addAlbumButton.addEventListener("click", function(){
-  oldVal = document.getElementById("toggleIndex").value++;
+  oldVal = toggleIndex++;
+  debugger;
   newVal = oldVal + 1;
   document.getElementById("toggleIndex").value = newVal;
+  // oldVal = document.getElementById("toggleIndex").value++;
+  // newVal = oldVal + 1;
+  // document.getElementById("toggleIndex").value = newVal;
 });
 debugger;
 
