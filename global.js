@@ -82,6 +82,16 @@ window.addEventListener("load", function(){
   goToAlbumImagesForm.addEventListener("click", function(){
     moveBackward(newVal, toggledViews);
   });
+
+  var submitTracksButton = document.getElementById("submitTracksButton");
+  submitTracksButton.addEventListener("click", function(){
+    moveForward(newVal, toggledViews);
+  });
+
+  var goToGenreDateFormatForm = document.getElementById("goToGenreDateFormatForm");
+  goToGenreDateFormatForm.addEventListener("click", function(){
+    moveBackward(newVal, toggledViews);
+  });
   
 
 }); 
