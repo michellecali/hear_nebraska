@@ -6,42 +6,35 @@
 </head>
 <body>
 
-<div class="homePage" id="homePage" style="display: block">
-	<div class="header">
-		<button class="header__button" name="addAlbumButton" id="addAlbumButton">ADD AN ALBUM</button>
-	</div>
-	<div class="LatestUploads">
-		<div class="LatestUploads__Album" id="albumID">
-			<div class="LatestUploads__AlbumImage" id="albumImage"></div>
-			<div class="LatestUploads__AlbumTitle" id="albumTitle"></div>
-			<div class="LatestUploads__AlbumArtist" id="albumArtist"></div>
-		</div>
-	</div>
-	<div class="titleArtistForm" id="titleArtistForm" style="display: none">
-		<div id="titleArtistForm__Fields">
-			<h1>Album Title</h1>
-			<input id="title" type="text" class="titleArtistForm__title" name="Title">
-			<h1>Artist Name(s)</h1>
-			<input id="artist" type="text" class="titleArtistForm__artist" name="Artist">
-		<p>Separate multiple artists with a comma.</p>
-		<button class="titleArtistForm__submit" id="submitAlbumButton" name="submit">N</button>
-	</div> 
-	<div class="memberInstrumentPage" id="memberInstrumentPage">
-		<div class="memberInstrumentForm" id="memberInstrumentForm" style="display: none">
-			<h1>Add <span id="bandName"></span> members</h1>
-			<div id="memberInstrumentForm__fields">
-				<input type="text" class="memberInstrumentForm__member" id="member" placeholder="Name">
-				<input type="text" class="memberInstrumentForm__instrument" id="instrument" placeholder="Instrument(s)">
-			</div>
-			<p>Separate multiple instruments with a comma.</p>
-			<button class="memberInstrumentForm__lastForm" id="goToTitleArtistForm" name="previous">P</button>
-			<button class="memberInstrumentForm__submit" id="submitBandButton" name="next">N</button>
-			<button class="memberInstrumentForm__anotherMember" id="anotherMember" name="another">A</button>
-		</div> 
-		<button class="memberInstrumentForm__anotherMember" id="lastMember" style="display: none" name="last">L</button>
-	</div>
-	<div class="userData"></div>
+<input type="hidden" id="toggleIndex" value="0">
 
+<div class="toggledView" id="homePage">
+	<button id="addAlbumButton">ADD AN ALBUM</button>
+</div>
+	
+<div class="toggledView" id="titleArtistForm">
+	<div id="titleArtistForm__Fields">
+		<h1>Album Title</h1>
+		<input id="title" type="text">
+		<h1>Artist Name(s)</h1>
+		<input id="artist" type="text">
+	</div>
+	<p>Separate multiple artists with a comma.</p>
+	<button id="submitAlbumButton">N</button>
+</div>
 
+<div class="toggledView" id="memberInstrumentForm">
+	<h1>Add <span id="bandName"></span> members</h1>
+	<div id="memberInstrumentForm_Fields">
+		<input type="text" class="memberInstrumentForm__member" id="member" placeholder="Name">
+		<input type="text" class="memberInstrumentForm__instrument" id="instrument" placeholder="Instrument(s)">
+	</div>
+	<p>Separate multiple instruments with a comma.</p>
+	<button id="goToTitleArtistForm">P</button>
+	<button id="submitBandButton">N</button>
+	<button id="anotherMember">A</button>
+	<button id="lastMember">L</button>
+</div>
+<div class="toggledView" id="userData"></div>
 </body>
 </html>
