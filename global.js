@@ -5,70 +5,75 @@ window.addEventListener("load", function(){
     var titleArtistForm = document.getElementById("titleArtistForm");
     homePage.style.display="none";
     titleArtistForm.style.display="block";
-  });
   
-  submitAlbumButton.addEventListener("click", function(){
-    // capture entered values
-    var title = document.getElementById("title");
-    var artist = document.getElementById("artist");
-    // denote storage location
-    var userData = document.getElementsByClassName("userData");
-    // create divs with entered values
-    var userData__albumTitle = document.createElement("div");
-    userData__albumTitle.setAttribute("class", "userData__albumTitle");
-    userData__albumTitle.value = title.value;
-    var userData__albumArtist = document.createElement("div");
-    userData__albumArtist.setAttribute("class", "userData__albumArtist");
-    userData__albumArtist.value = artist.value;
-   
-    // check if unique artist
-    var artistCompare = new XMLHttpRequest();
-
-    artistCompare.addEventListener("load", function(e){  
-
-      var artistCompareResult = JSON.parse(e.target.response);
-      var artistId = artistCompareResult.artistId;
+    submitAlbumButton.addEventListener("click", function(){
+      // capture entered values
+      var title = document.getElementById("title");
+      var artist = document.getElementById("artist");
       debugger;
-      // if not a unique artist, capture artistID and check if unique album
-      if (artistId != ""){
-        // capture artistID
-        var userData__artistId = document.createElement("div");
-        userData__artistId.setAttribute("class", "userData__artistId");
-        userData__artistId.value = artistId.value;
-        debugger;
-        //check if unique album
-        var albumTitleCompare = new XMLHttpRequest();
+      // hide this form and show the next
+      titleArtistForm.style.display = "none";
+      debugger;
+      var memberInstrumentForm = document.getElementById("memberInstrumentForm");
+      memberInstrumentForm.style.display="block";
+      debugger;
+      var bandName = document.getElementById("bandName");  
+      bandName.innerHTML = artist;
+      debugger;
 
-        albumTitleCompare.addEventListener("load", function(e){
+      // denote storage location
+      var userData = document.getElementsByClassName("userData");
+      // create divs with entered values
+      var userData__albumTitle = document.createElement("div");
+      userData__albumTitle.setAttribute("class", "userData__albumTitle");
+      userData__albumTitle.value = title.value;
+      var userData__albumArtist = document.createElement("div");
+      userData__albumArtist.setAttribute("class", "userData__albumArtist");
+      userData__albumArtist.value = artist.value;
+     
+      // check if unique artist
+      var artistCompare = new XMLHttpRequest();
 
-          var albumTitleCompareResult = JSON.parse(e.target.response);
-          var albumTitleId = albumTitleCompareResult.albumId;
+      artistCompare.addEventListener("load", function(e){  
+
+        var artistCompareResult = JSON.parse(e.target.response);
+        var artistIdField = artistCompareResult.artistId;
+
+        // if not a unique artist, capture artistID and check if unique album
+        if (artistIdField != ""){
+          // capture artistID
+          var userData__artistId = document.createElement("div");
+          userData__artistId.setAttribute("class", "userData__artistId");
+          userData__artistId.value = artistIdField;
           debugger;
+          //check if unique album
+          var albumTitleCompare = new XMLHttpRequest();
 
-          // if not unique album, capture albumId
-          if (albumTitleId != ""){
-            var userData__albumTitleId = document.createElement("div");
-            userData__albumTitleId.setAttribute("class", "userData__albumTitleId");
-            userData__albumTitleId.value = albumTitleId.value;  
+          albumTitleCompare.addEventListener("load", function(e){
+
+            var albumTitleCompareResult = JSON.parse(e.target.response);
+            var albumTitleId = albumTitleCompareResult.albumId;
             debugger;
-          }
-        });
 
-        albumTitleCompare.open("get", "albumInfo");
-        albumTitleCompare.send();
-      }
+            // if not unique album, capture albumId
+            if (albumTitleId != ""){
+              var userData__albumTitleId = document.createElement("div");
+              userData__albumTitleId.setAttribute("class", "userData__albumTitleId");
+              userData__albumTitleId.value = albumTitleId;  
+              debugger;
+            }
+          });
+
+          albumTitleCompare.open("get", "albumInfo");
+          albumTitleCompare.send();
+        }
+      });
+      artistCompare.open("get", "artistInfo");
+      artistCompare.send(); 
+      debugger;
+           
     });
-    artistCompare.open("get", "artistInfo");
-    artistCompare.send(); 
-    debugger;
-         
-    // hide this form and show the next
-    titleArtistForm.style.display = "none";
-    var memberInstrumentForm = document.getElementById("memberInstrumentForm");
-    var bandName = document.getElementById("bandName");  
-    bandName.innerHTML = artist;
-    memberInstrumentForm.style.display="block";
-  });
+});
    
 
   anotherMember.addEventListener("click", newMemberInstrument);

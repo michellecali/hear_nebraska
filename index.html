@@ -10,53 +10,37 @@
 	<div class="header">
 		<button class="header__button" name="addAlbumButton" id="addAlbumButton">ADD AN ALBUM</button>
 	</div>
-</div>
-
-
-<div class="titleArtistForm" id="titleArtistForm" style="display: none">
-	<div id="titleArtistForm__Fields">
-		<h1>Album Title</h1>
-		<input id="title" type="text" class="titleArtistForm__title" name="Title">
-		<h1>Artist Name(s)</h1>
-		<input id="artist" type="text" class="titleArtistForm__artist" name="Artist">
-	<p>Separate multiple artists with a comma.</p>
-	<button class="titleArtistForm__submit" id="submitAlbumButton" name="submit">N</button>
-</div> 
-
-<div class="memberInstrumentPage" id="memberInstrumentPage">
-	<div class="memberInstrumentForm" id="memberInstrumentForm" style="display: none">
-		<h1>Add <span id="bandName"></span> members</h1>
-		<div id="memberInstrumentForm__fields">
-			<input type="text" class="memberInstrumentForm__member" id="member" placeholder="Name">
-			<input type="text" class="memberInstrumentForm__instrument" id="instrument" placeholder="Instrument(s)">
+	<div class="LatestUploads">
+		<div class="LatestUploads__Album" id="albumID">
+			<div class="LatestUploads__AlbumImage" id="albumImage"></div>
+			<div class="LatestUploads__AlbumTitle" id="albumTitle"></div>
+			<div class="LatestUploads__AlbumArtist" id="albumArtist"></div>
 		</div>
-		<p>Separate multiple instruments with a comma.</p>
-		<button class="memberInstrumentForm__lastForm" id="goToTitleArtistForm" name="previous">P</button>
-		<button class="memberInstrumentForm__submit" id="submitBandButton" name="next">N</button>
-		<button class="memberInstrumentForm__anotherMember" id="anotherMember" name="another">A</button>
+	</div>
+	<div class="titleArtistForm" id="titleArtistForm" style="display: none">
+		<div id="titleArtistForm__Fields">
+			<h1>Album Title</h1>
+			<input id="title" type="text" class="titleArtistForm__title" name="Title">
+			<h1>Artist Name(s)</h1>
+			<input id="artist" type="text" class="titleArtistForm__artist" name="Artist">
+		<p>Separate multiple artists with a comma.</p>
+		<button class="titleArtistForm__submit" id="submitAlbumButton" name="submit">N</button>
 	</div> 
-	<button class="memberInstrumentForm__anotherMember" id="lastMember" style="display: none" name="last">L</button>
-	<br>
-	<p>For development only, this could be an array</p>
-
-</div>
-<div class="userData">
-	<!-- <div class="userData__albumTitle"></div>
-	<div class="userData__albumTitleId"></div>
-	<div class="userData__albumArtist"></div>
-	<div class="userData__artistIdFields"></div>
-	<div class="userData__Members"></div>
-	<div class="userData__Instruments"></div>
-	<div class="userData__Location"></div>
-	<div class="userData__CoverImage"></div>
-	<div class="userData__ImageType"></div>
-	<div class="userData__ImageFile"></div>
-	<div class="userData__Genre"></div>
-	<div class="userData__ReleaseDate"></div>
-	<div class="userData__Format"></div>
-	<div class="userData__TrackNames"></div>
-	<div class="userData__TrackFiles"></div> -->
-</div>
+	<div class="memberInstrumentPage" id="memberInstrumentPage">
+		<div class="memberInstrumentForm" id="memberInstrumentForm" style="display: none">
+			<h1>Add <span id="bandName"></span> members</h1>
+			<div id="memberInstrumentForm__fields">
+				<input type="text" class="memberInstrumentForm__member" id="member" placeholder="Name">
+				<input type="text" class="memberInstrumentForm__instrument" id="instrument" placeholder="Instrument(s)">
+			</div>
+			<p>Separate multiple instruments with a comma.</p>
+			<button class="memberInstrumentForm__lastForm" id="goToTitleArtistForm" name="previous">P</button>
+			<button class="memberInstrumentForm__submit" id="submitBandButton" name="next">N</button>
+			<button class="memberInstrumentForm__anotherMember" id="anotherMember" name="another">A</button>
+		</div> 
+		<button class="memberInstrumentForm__anotherMember" id="lastMember" style="display: none" name="last">L</button>
+	</div>
+	<div class="userData"></div>
 
 
 </body>
