@@ -8,7 +8,7 @@ function toggleViews(div) {
   if (div.style.display === "none") {
     div.style.display = "block";
   } else if (div.style.display === "block") {
-    div.style.display = "end";
+    div.style.display = "none";
   }
 }
 
@@ -21,15 +21,12 @@ var currentView = toggleViews(toggledViews[toggleIndex]);
 var addAlbumButton = document.getElementById("addAlbumButton");
 
 
-addAlbumButton.addEventListener("click", function(){
-  oldVal = toggleIndex++;
-  debugger;
-  newVal = oldVal + 1;
-  document.getElementById("toggleIndex").value = newVal;
-  // oldVal = document.getElementById("toggleIndex").value++;
-  // newVal = oldVal + 1;
-  // document.getElementById("toggleIndex").value = newVal;
-});
-debugger;
+  addAlbumButton.addEventListener("click", function(){
+    oldVal = toggleIndex++;
+    newVal = oldVal + 1;
+    document.getElementById("toggleIndex").value = newVal;
+    toggleViews(toggledViews[oldVal]);
+    toggleViews(toggledViews[newVal]);  
+  });
 
 }); 
