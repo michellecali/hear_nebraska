@@ -1,9 +1,8 @@
 function hideAll(divs) {
   for (var i = 0; i < divs.length; i++) {
-    divs[i].style.display = "none"
+    divs[i].style.display = "none";
   }
 }
-
 function toggleViews(div) {
   if (div.style.display === "none") {
     div.style.display = "block";
@@ -13,15 +12,15 @@ function toggleViews(div) {
 }
 
 function nextPage(value, array) {
-    oldVal = value++;
-    newVal = oldVal + 1;
+    window.oldVal = value++;
+    window.newVal = oldVal + 1;
     toggleViews(array[oldVal]);
     toggleViews(array[newVal]);  
 }
 
 function lastPage(value, array) {
-    oldVal = value++;
-    newVal = oldVal - 1;
+    window.oldVal = value++;
+    window.newVal = oldVal - 1;
     toggleViews(array[oldVal]);
     toggleViews(array[newVal]);  
 }
@@ -33,12 +32,19 @@ function nextRecord(value, array) {
     toggleViews(array[newRec]);  
 }
 
-function lastRecord(value, array) {
-    oldRec = value++;
-    newRec = oldRec - 1;
-    toggleViews(array[oldRec]);
-    toggleViews(array[newRec]);  
-}
+// function lastRecord(array) {
+//     v
+//     clicks -= 1;
+//     hideAll(array);
+//     array[clicks].style.display = "block";
+    // when button is clicked first time, on focus, clicker value (V) set to length of members
+    // hideAll records
+    // display of V-1 = shown
+    // when clicked again, V decreases by 1
+    // function showLast
+    // event listener when anything else is clicked returns to nil 
+
+// }
 
 function makeParagraph(v) {
   var p = document.createElement("P");
