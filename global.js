@@ -115,8 +115,10 @@ window.addEventListener("load", function(){
     var memberFields = document.getElementById("memberFields").querySelectorAll("input");
     var instrumentFields = document.getElementById("instrumentFields").querySelectorAll("input");
     var q = memberFields.length;
-    memberFields[q-1].style.display = "none";
-    instrumentFields[q-1].style.display = "none";
+    for (var i = 0; i < q; i++) {
+      memberFields[i].style.display = "none";
+      instrumentFields[i].style.display = "none";
+    }
     makeMember(q);
     makeInstrument();
     lastMember.style.display = "block";
