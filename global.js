@@ -12,97 +12,164 @@ function toggleViews(div) {
   }
 }
 
-function moveForward(value, array) {
+function nextPage(value, array) {
     oldVal = value++;
     newVal = oldVal + 1;
     toggleViews(array[oldVal]);
     toggleViews(array[newVal]);  
 }
 
-function moveBackward(value, array) {
+function lastPage(value, array) {
     oldVal = value++;
     newVal = oldVal - 1;
-    document.getElementById("toggleIndex").value = newVal;
     toggleViews(array[oldVal]);
     toggleViews(array[newVal]);  
 }
 
+function nextRecord(value, array) {
+    oldRec = value++;
+    newRec = oldRec + 1;
+    toggleViews(array[oldRec]);
+    toggleViews(array[newRec]);  
+}
 
+function lastRecord(value, array) {
+    oldRec = value++;
+    newRec = oldRec - 1;
+    toggleViews(array[oldRec]);
+    toggleViews(array[newRec]);  
+}
+
+function makeParagraph(v) {
+  var p = document.createElement("P");
+  var t = document.createTextNode(v.value);
+  p.appendChild(t);
+  userData.appendChild(p);
+}
+
+function makeMember(v) {
+  var memberFieldsDiv = document.getElementById("memberFields");
+  var newMember = document.createElement("INPUT");
+  var name = v;
+  newMember.setAttribute("type", "text");
+  newMember.setAttribute("name", name);
+  newMember.setAttribute("placeholder", "Name");
+  memberFieldsDiv.appendChild(newMember);
+}
+
+function makeInstrument() {
+  var instrumentFieldsDiv = document.getElementById("instrumentFields");
+  var newInstrument = document.createElement("INPUT");
+  newInstrument.setAttribute("type", "text");
+  newInstrument.setAttribute("placeholder", "Instrument(s)");
+  instrumentFieldsDiv.appendChild(newInstrument);
+}
 
 window.addEventListener("load", function(){
   var toggledViews = document.getElementsByClassName("toggledView");
-  var hidePage = hideAll(toggledViews);
-  var toggleIndex = document.getElementById("toggleIndex").value;
-  var currentView = toggleViews(toggledViews[toggleIndex]);
+  hideAll(toggledViews);
   var userData = document.getElementById("userData");
-  userData.style.display = "none";
+  hideAll(userData);
+  var hiddenButtons = [document.getElementById("lastTrack"), document.getElementById("lastMember")];
+  hideAll(hiddenButtons);
+  var toggleIndex = "0";
+  toggleViews(toggledViews[toggleIndex]);
 
   var addAlbumButton = document.getElementById("addAlbumButton");
   addAlbumButton.addEventListener("click", function(){
-    moveForward(toggleIndex, toggledViews);
+    nextPage(toggleIndex, toggledViews);
   });
 
+// titleArtistForm
   var submitAlbumButton = document.getElementById("submitAlbumButton");
   submitAlbumButton.addEventListener("click", function(){
-    moveForward(newVal, toggledViews);
-    var userData__albumArtist = document.createElement("P");
-    userData__albumArtist.setAttribute("class", "userData__albumArtist");
-    var t = document.createTextNode(albumArtist.value);
-    userData__albumArtist.appendChild(t);   
-    userData.appendChild(userData__albumArtist);
+    nextPage(newVal, toggledViews);
+  });
+
+// memberInstrumentForm
+  var lastMember = document.getElementById("lastMember");
+  lastMember.addEventListener("click", function(){
+    var memberFields = document.getElementById("memberFields").querySelectorAll("input");
+    var instrumentFields = document.getElementById("instrumentFields").querySelectorAll("input");
+    var n = memberFields.length;
     debugger;
+    memberFields[n-1].style.display = "none";
+    instrumentFields[n-1].style.display = "none";
+    memberFields[n-2].style.display = "block";
+    instrumentFields[n-2].style.display = "block";
   });
 
   var submitBandButton = document.getElementById("submitBandButton");
   submitBandButton.addEventListener("click", function(){
-    moveForward(newVal, toggledViews);
+    nextPage(newVal, toggledViews);
+    lastMember.style.display = "none";
   });
 
   var goToTitleArtistForm = document.getElementById("goToTitleArtistForm");
   goToTitleArtistForm.addEventListener("click", function(){
-    moveBackward(newVal, toggledViews);
+    lastPage(newVal, toggledViews);
   });
 
+  var anotherMember = document.getElementById("anotherMember");
+  anotherMember.addEventListener("click", function(){
+    var memberFields = document.getElementById("memberFields").querySelectorAll("input");
+    var instrumentFields = document.getElementById("instrumentFields").querySelectorAll("input");
+    var q = memberFields.length;
+    memberFields[q-1].style.display = "none";
+    instrumentFields[q-1].style.display = "none";
+    makeMember(q);
+    makeInstrument();
+    lastMember.style.display = "block";
+  })
+
+// locationImageForm
   var submitLocationImageButton = document.getElementById("submitLocationImageButton");
   submitLocationImageButton.addEventListener("click", function(){
-    moveForward(newVal, toggledViews);
+    nextPage(newVal, toggledViews);
   });
 
   var goToMemberInstrumentForm = document.getElementById("goToMemberInstrumentForm");
   goToMemberInstrumentForm.addEventListener("click", function(){
-    moveBackward(newVal, toggledViews);
+    lastPage(newVal, toggledViews);
   });
 
+// albumImagesForm
   var submitAlbumImagesButton = document.getElementById("submitAlbumImagesButton");
   submitAlbumImagesButton.addEventListener("click", function(){
-    moveForward(newVal, toggledViews);
+    nextPage(newVal, toggledViews);
   });
 
   var goToLocationImageForm = document.getElementById("goToLocationImageForm");
   goToLocationImageForm.addEventListener("click", function(){
-    moveBackward(newVal, toggledViews);
+    lastPage(newVal, toggledViews);
   });
 
+// genreDateFormatForm
   var submitGenreDateFormatButton = document.getElementById("submitGenreDateFormatButton");
   submitGenreDateFormatButton.addEventListener("click", function(){
-    moveForward(newVal, toggledViews);
+    nextPage(newVal, toggledViews);
   });
 
   var goToAlbumImagesForm = document.getElementById("goToAlbumImagesForm");
   goToAlbumImagesForm.addEventListener("click", function(){
-    moveBackward(newVal, toggledViews);
+    lastPage(newVal, toggledViews);
   });
 
+// trackEntryForm
   var submitAllButton = document.getElementById("submitAllButton");
   submitAllButton.addEventListener("click", function(){
     hideAll(toggledViews);
+    var allFormFields = document.querySelectorAll("input"); 
+    for (var i = 0; i < allFormFields.length; i++) {
+      makeParagraph(allFormFields[i]);
+    }
     userData.style.display = "block"
     debugger;
   });
 
   var goToGenreDateFormatForm = document.getElementById("goToGenreDateFormatForm");
   goToGenreDateFormatForm.addEventListener("click", function(){
-    moveBackward(newVal, toggledViews);
+    lastPage(newVal, toggledViews);
   });
   
 
