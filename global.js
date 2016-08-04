@@ -115,10 +115,8 @@ window.addEventListener("load", function(){
     var memberFields = document.getElementById("memberFields").querySelectorAll("input");
     var instrumentFields = document.getElementById("instrumentFields").querySelectorAll("input");
     var q = memberFields.length;
-    for (var i = 0; i < q; i++) {
-      memberFields[i].style.display = "none";
-      instrumentFields[i].style.display = "none";
-    }
+    hideAll(memberFields);
+    hideAll(instrumentFields);
     makeMember(q);
     makeInstrument();
     lastMember.style.display = "block";
