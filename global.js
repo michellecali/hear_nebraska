@@ -22,21 +22,30 @@ function lastPage(value, array) {
     toggleViews(array[oldVal]);
     toggleViews(array[newVal]);  
 }
-
 function lastRecord(string, value) {
     var field = document.getElementById(string);
     var array = [].slice.call(document.getElementsByClassName(string), 0).reverse();
     var index = value % array.length;
     field.value = array[index].entry;
 }
-
+function populateTrack(string, value, v) {
+    var field = document.getElementById(string);
+    var array = [].slice.call(document.getElementsByClassName(string), 0).reverse();
+    var index = value % array.length;
+    v.innerHTML = index;
+}
 function storeEntries(v) {
   var p = document.createElement("div");
   p.setAttribute("class", v.id);
   p.entry = v.value;
   userData.appendChild(p);
 }
-
+function makeParagraph(v) {
+  var p = document.createElement("P");
+  var t = document.createTextNode(v.value);
+  p.appendChild(t);
+  userData.appendChild(p);
+}
 function clearValue(v) {
   v.value = "";
 }
@@ -96,10 +105,8 @@ window.addEventListener("load", function(){
             albumTitleId.setAttribute("type", "hidden");
             albumTitleId.value = albumTitleIdField;
             titleArtistForm__Fields.appendChild(albumTitleId);   
-
           }
         });
-
         albumTitleCompare.open("get", "albumInfo");
         albumTitleCompare.send();
       }
@@ -178,13 +185,34 @@ window.addEventListener("load", function(){
   });
 
 // trackEntryForm
+  var trackNumber = document.getElementById("trackNumber");
+  var lastTrack = document.getElementById("lastTrack");
+  var cliqs = "0";
+  lastTrack.addEventListener("click", function(){
+    var value = cliqs++;
+    lastRecord("trackNames", value);
+    lastRecord("trackFiles", value);
+    debugger;
+    populateTrack("trackNames", value, trackNumber);
+    debugger;
+  });
+
+ var anotherTrack = document.getElementById("anotherTrack");
+  anotherTrack.addEventListener("click", function(){
+    var trackEntryFields = document.getElementById("trackEntryForm_Fields").querySelectorAll("input");
+    for (var i = 0; i < trackEntryFields.length; i++) {
+      storeEntries(trackEntryFields[i]);
+      clearValue(trackEntryFields[i]);  
+    }
+    lastTrack.style.display = "block"; 
+  })
+
   var submitAllButton = document.getElementById("submitAllButton");
   submitAllButton.addEventListener("click", function(){
     hideAll(toggledViews);
     var allFormFields = document.querySelectorAll("input"); 
     for (var i = 0; i < allFormFields.length; i++) {
       makeParagraph(allFormFields[i]);
-
     }
     userData.style.display = "block"
   });
