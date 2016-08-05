@@ -23,13 +23,13 @@ function lastPage(value, array) {
     toggleViews(array[newVal]);  
 }
 
-function lastRecord(input1, input2, array1, array2, index) {
-    input1.value = array1[index].entry;
-    input2.value = array2[index].entry;
+function lastRecord(string, value) {
+    var field = document.getElementById(string);
+    var array = [].slice.call(document.getElementsByClassName(string), 0).reverse();
+    var index = value % array.length;
+    field.value = array[index].entry;
 }
 
-
-    
 function storeEntries(v) {
   var p = document.createElement("div");
   p.setAttribute("class", v.id);
@@ -130,14 +130,9 @@ window.addEventListener("load", function(){
   var lastMember = document.getElementById("lastMember");
   var clicks = "0";
   lastMember.addEventListener("click", function(){
-    var memberInput = document.getElementById("members");
-    var instrumentInput = document.getElementById("instruments");
-    var memberFields = [].slice.call(document.getElementsByClassName("members"), 0).reverse();
-    var instrumentFields = [].slice.call(document.getElementsByClassName("instruments"), 0).reverse();
-    var index = clicks++ % memberFields.length;
-    // memberInput.value = memberFields[index].entry;
-    // instrumentInput.value = instrumentFields[index].entry;
-    lastRecord(memberInput, instrumentInput, memberFields, instrumentFields, index);
+    var value = clicks++;
+    lastRecord("members", value);
+    lastRecord("instruments", value);
   });
 
   var submitBandButton = document.getElementById("submitBandButton");
