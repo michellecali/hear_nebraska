@@ -41,22 +41,6 @@ function clearValue(v) {
   v.value = "";
 }
 
-function makeMember() {
-  var memberFieldsDiv = document.getElementById("memberFields");
-  var newMember = document.createElement("INPUT");
-  newMember.setAttribute("type", "text");
-  newMember.setAttribute("placeholder", "Name");
-  memberFieldsDiv.appendChild(newMember);
-}
-
-function makeInstrument() {
-  var instrumentFieldsDiv = document.getElementById("instrumentFields");
-  var newInstrument = document.createElement("INPUT");
-  newInstrument.setAttribute("type", "text");
-  newInstrument.setAttribute("placeholder", "Instrument(s)");
-  instrumentFieldsDiv.appendChild(newInstrument);
-}
-
 window.addEventListener("load", function(){
   var toggledViews = document.getElementsByClassName("toggledView");
   hideAll(toggledViews);
@@ -137,6 +121,10 @@ window.addEventListener("load", function(){
 
   var submitBandButton = document.getElementById("submitBandButton");
   submitBandButton.addEventListener("click", function(){
+    var memberInstrumentFields = document.getElementById("memberInstrumentForm").querySelectorAll("input");
+    for (var i = 0; i < memberInstrumentFields.length; i++) {
+      storeEntries(memberInstrumentFields[i]);
+    }
     nextPage(newVal, toggledViews);
     lastMember.style.display = "none";
   });
@@ -151,11 +139,9 @@ window.addEventListener("load", function(){
     var memberInstrumentFields = document.getElementById("memberInstrumentForm").querySelectorAll("input");
     for (var i = 0; i < memberInstrumentFields.length; i++) {
       storeEntries(memberInstrumentFields[i]);
-      clearValue(memberInstrumentFields[i]);
-      lastMember.style.display = "block";
+      clearValue(memberInstrumentFields[i]);  
     }
-  
-    
+    lastMember.style.display = "block"; 
   })
 
 // locationImageForm
