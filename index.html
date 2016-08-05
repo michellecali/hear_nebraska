@@ -3,6 +3,7 @@
 <head>
  <title>Hear Nebraska</title>
  <script type="text/javascript" src="global.js"></script>
+ <link rel="stylesheet" type="text/css" href="global.css">
 </head>
 <body id="body">
 	<div class="toggledView" id="homePage">
@@ -22,12 +23,8 @@
 
 	<div class="toggledView" id="memberInstrumentForm">
 		<h1>Add <span id="bandName"></span> members</h1>
-		<div id="memberFields">
-			<input type="text" name="0" id="members" placeholder="Name">
-		</div>
-		<div id="instrumentFields">
-			<input type="text" id="instruments" placeholder="Instrument(s)">
-		</div>
+		<input type="text" name="0" id="members" placeholder="Name">
+		<input type="text" id="instruments" placeholder="Instrument(s)">
 		<p>Separate multiple instruments with a comma.</p>
 		<button id="goToTitleArtistForm">P</button>
 		<button id="submitBandButton">N</button>

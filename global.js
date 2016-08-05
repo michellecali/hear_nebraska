@@ -10,14 +10,12 @@ function toggleViews(div) {
     div.style.display = "none";
   }
 }
-
 function nextPage(value, array) {
     window.oldVal = value++;
     window.newVal = oldVal + 1;
     toggleViews(array[oldVal]);
     toggleViews(array[newVal]);  
 }
-
 function lastPage(value, array) {
     window.oldVal = value++;
     window.newVal = oldVal - 1;
@@ -25,40 +23,28 @@ function lastPage(value, array) {
     toggleViews(array[newVal]);  
 }
 
-function nextRecord(value, array) {
-    oldRec = value++;
-    newRec = oldRec + 1;
-    toggleViews(array[oldRec]);
-    toggleViews(array[newRec]);  
+function lastRecord(input1, input2, array1, array2, index) {
+    input1.value = array1[index].entry;
+    input2.value = array2[index].entry;
 }
 
-// function lastRecord(array) {
-//     v
-//     clicks -= 1;
-//     hideAll(array);
-//     array[clicks].style.display = "block";
-    // when button is clicked first time, on focus, clicker value (V) set to length of members
-    // hideAll records
-    // display of V-1 = shown
-    // when clicked again, V decreases by 1
-    // function showLast
-    // event listener when anything else is clicked returns to nil 
 
-// }
-
-function makeParagraph(v) {
-  var p = document.createElement("P");
-  var t = document.createTextNode(v.value);
-  p.appendChild(t);
+    
+function storeEntries(v) {
+  var p = document.createElement("div");
+  p.setAttribute("class", v.id);
+  p.entry = v.value;
   userData.appendChild(p);
 }
 
-function makeMember(v) {
+function clearValue(v) {
+  v.value = "";
+}
+
+function makeMember() {
   var memberFieldsDiv = document.getElementById("memberFields");
   var newMember = document.createElement("INPUT");
-  var name = v;
   newMember.setAttribute("type", "text");
-  newMember.setAttribute("name", name);
   newMember.setAttribute("placeholder", "Name");
   memberFieldsDiv.appendChild(newMember);
 }
@@ -89,20 +75,69 @@ window.addEventListener("load", function(){
 // titleArtistForm
   var submitAlbumButton = document.getElementById("submitAlbumButton");
   submitAlbumButton.addEventListener("click", function(){
+  // Populate upcoming forms with artist name  
+    var albumArtist = document.getElementById("albumArtist").value;
+    var bandNames = [document.getElementById("bandName"), document.getElementById("bandName2"), document.getElementById("bandName3")];
+    for (var i = 0; i < bandNames.length; i++) {
+      bandNames[i].innerHTML = albumArtist;
+    }
+// check if unique artist
+    var artistCompare = new XMLHttpRequest();
+
+    artistCompare.addEventListener("load", function(e){  
+
+      var artistCompareResult = JSON.parse(e.target.response);
+      var artistInfo = artistCompareResult.artistId;
+
+      // if not a unique artist, capture artistID and check if unique album
+      if (artistInfo != ""){
+        // capture artistID
+        var artistIdField = document.createElement("INPUT");
+        artistIdField.setAttribute("type", "hidden");
+        artistIdField.value = artistInfo;
+        var titleArtistForm__Fields = document.getElementById("titleArtistForm__Fields");
+        titleArtistForm__Fields.appendChild(artistIdField); 
+
+        //check if unique album
+        var albumTitleCompare = new XMLHttpRequest();
+
+        albumTitleCompare.addEventListener("load", function(e){
+
+          var albumTitleCompareResult = JSON.parse(e.target.response);
+          var albumTitleIdField = albumTitleCompareResult.albumId;
+
+          // if not unique album, capture albumId
+          if (albumTitleIdField != ""){
+            var albumTitleId = document.createElement("INPUT");
+            albumTitleId.setAttribute("type", "hidden");
+            albumTitleId.value = albumTitleIdField;
+            titleArtistForm__Fields.appendChild(albumTitleId);   
+
+          }
+        });
+
+        albumTitleCompare.open("get", "albumInfo");
+        albumTitleCompare.send();
+      }
+    });
+    artistCompare.open("get", "artistInfo");
+    artistCompare.send(); 
+
     nextPage(newVal, toggledViews);
   });
 
 // memberInstrumentForm
   var lastMember = document.getElementById("lastMember");
+  var clicks = "0";
   lastMember.addEventListener("click", function(){
-    var memberFields = document.getElementById("memberFields").querySelectorAll("input");
-    var instrumentFields = document.getElementById("instrumentFields").querySelectorAll("input");
-    var n = memberFields.length;
-    debugger;
-    memberFields[n-1].style.display = "none";
-    instrumentFields[n-1].style.display = "none";
-    memberFields[n-2].style.display = "block";
-    instrumentFields[n-2].style.display = "block";
+    var memberInput = document.getElementById("members");
+    var instrumentInput = document.getElementById("instruments");
+    var memberFields = [].slice.call(document.getElementsByClassName("members"), 0).reverse();
+    var instrumentFields = [].slice.call(document.getElementsByClassName("instruments"), 0).reverse();
+    var index = clicks++ % memberFields.length;
+    // memberInput.value = memberFields[index].entry;
+    // instrumentInput.value = instrumentFields[index].entry;
+    lastRecord(memberInput, instrumentInput, memberFields, instrumentFields, index);
   });
 
   var submitBandButton = document.getElementById("submitBandButton");
@@ -118,14 +153,14 @@ window.addEventListener("load", function(){
 
   var anotherMember = document.getElementById("anotherMember");
   anotherMember.addEventListener("click", function(){
-    var memberFields = document.getElementById("memberFields").querySelectorAll("input");
-    var instrumentFields = document.getElementById("instrumentFields").querySelectorAll("input");
-    var q = memberFields.length;
-    hideAll(memberFields);
-    hideAll(instrumentFields);
-    makeMember(q);
-    makeInstrument();
-    lastMember.style.display = "block";
+    var memberInstrumentFields = document.getElementById("memberInstrumentForm").querySelectorAll("input");
+    for (var i = 0; i < memberInstrumentFields.length; i++) {
+      storeEntries(memberInstrumentFields[i]);
+      clearValue(memberInstrumentFields[i]);
+      lastMember.style.display = "block";
+    }
+  
+    
   })
 
 // locationImageForm
@@ -168,9 +203,9 @@ window.addEventListener("load", function(){
     var allFormFields = document.querySelectorAll("input"); 
     for (var i = 0; i < allFormFields.length; i++) {
       makeParagraph(allFormFields[i]);
+
     }
     userData.style.display = "block"
-    debugger;
   });
 
   var goToGenreDateFormatForm = document.getElementById("goToGenreDateFormatForm");
