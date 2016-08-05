@@ -3,45 +3,85 @@
 <head>
  <title>Hear Nebraska</title>
  <script type="text/javascript" src="global.js"></script>
+ <link rel="stylesheet" type="text/css" href="global.css">
 </head>
-<body>
-
-<div class="homePage" id="homePage" style="display: block">
-	<div class="header">
-		<button class="header__button" name="addAlbumButton" id="addAlbumButton">ADD AN ALBUM</button>
+<body id="body">
+	<div class="toggledView" id="homePage">
+		<button id="addAlbumButton">ADD AN ALBUM</button>
 	</div>
-	<div class="LatestUploads">
-		<div class="LatestUploads__Album" id="albumID">
-			<div class="LatestUploads__AlbumImage" id="albumImage"></div>
-			<div class="LatestUploads__AlbumTitle" id="albumTitle"></div>
-			<div class="LatestUploads__AlbumArtist" id="albumArtist"></div>
-		</div>
-	</div>
-	<div class="titleArtistForm" id="titleArtistForm" style="display: none">
+		
+	<div class="toggledView" id="titleArtistForm">
 		<div id="titleArtistForm__Fields">
 			<h1>Album Title</h1>
-			<input id="title" type="text" class="titleArtistForm__title" name="Title">
+			<input id="albumTitle" type="text">
 			<h1>Artist Name(s)</h1>
-			<input id="artist" type="text" class="titleArtistForm__artist" name="Artist">
+			<input id="albumArtist" type="text">
+		</div>
 		<p>Separate multiple artists with a comma.</p>
-		<button class="titleArtistForm__submit" id="submitAlbumButton" name="submit">N</button>
-	</div> 
-	<div class="memberInstrumentPage" id="memberInstrumentPage">
-		<div class="memberInstrumentForm" id="memberInstrumentForm" style="display: none">
-			<h1>Add <span id="bandName"></span> members</h1>
-			<div id="memberInstrumentForm__fields">
-				<input type="text" class="memberInstrumentForm__member" id="member" placeholder="Name">
-				<input type="text" class="memberInstrumentForm__instrument" id="instrument" placeholder="Instrument(s)">
-			</div>
-			<p>Separate multiple instruments with a comma.</p>
-			<button class="memberInstrumentForm__lastForm" id="goToTitleArtistForm" name="previous">P</button>
-			<button class="memberInstrumentForm__submit" id="submitBandButton" name="next">N</button>
-			<button class="memberInstrumentForm__anotherMember" id="anotherMember" name="another">A</button>
-		</div> 
-		<button class="memberInstrumentForm__anotherMember" id="lastMember" style="display: none" name="last">L</button>
+		<button id="submitAlbumButton">N</button>
 	</div>
-	<div class="userData"></div>
 
+	<div class="toggledView" id="memberInstrumentForm">
+		<h1>Add <span id="bandName"></span> members</h1>
+		<input type="text" name="0" id="members" placeholder="Name">
+		<input type="text" id="instruments" placeholder="Instrument(s)">
+		<p>Separate multiple instruments with a comma.</p>
+		<button id="goToTitleArtistForm">P</button>
+		<button id="submitBandButton">N</button>
+		<button id="anotherMember">A</button>
+		<button id="lastMember">L</button>
+	</div>
 
+	<div class="toggledView" id="locationImageForm">
+		<h1><span id="bandName2"></span> location</h1>
+		<div id="locationImageForm_Fields">
+			<input type="text" id="location" placeholder="City name...">
+			<h1><span id="bandName3"></span> image</h1>
+			<button id="chooseFileButton">Choose File</button>
+			<input type="text" id="coverImage" placeholder="No file chosen">
+		</div>
+		<button id="goToMemberInstrumentForm">P</button>
+		<button id="submitLocationImageButton">N</button>
+	</div>
+
+	<div class="toggledView" id="albumImagesForm">
+		<h1>Album images</h1>
+		<div id="albumImagesForm_Fields">
+			<input type="text" id="imageType" placeholder="ALBUM COVER">
+			<button id="chooseImagesFileButton">Choose File</button>
+			<input type="text" id="imageFile" placeholder="No file chosen">
+		</div>
+		<button id="goToLocationImageForm">P</button>
+		<button id="submitAlbumImagesButton">N</button>
+	</div>
+
+	<div class="toggledView" id="genreDateFormatForm">
+		<div id="genreDateFormatForm_Fields">
+			<h1>Album genre</h1>
+			<input type="text" id="genre">
+			<h1>Release date</h1>
+			<input type="text" id="releaseDate">
+			<h1>Album format</h1>
+			<input type="text" id="format" placeholder="LP">
+		</div>
+		<button id="goToAlbumImagesForm">P</button>
+		<button id="submitGenreDateFormatButton">N</button>
+	</div>
+
+	<div class="toggledView" id="trackEntryForm">
+		<h1>Track <span id="trackNumber"></span>
+		<h1>Album tracks</h1>
+		<div id="trackEntryForm_Fields">
+			<input type="text" id="trackNames" placeholder="Track title">
+			<button id="chooseTracksFileButton">Upload song</button>
+			<input type="text" id="trackFiles" placeholder="No file chosen">
+		</div>
+		<button id="goToGenreDateFormatForm">P</button>
+		<button id="submitAllButton">SAVE ALBUM</button>
+		<button id="anotherTrack">A</button>
+		<button id="lastTrack">L</button>
+	</div>
+
+	<div class="resultsView" id="userData"></div>
 </body>
 </html>
